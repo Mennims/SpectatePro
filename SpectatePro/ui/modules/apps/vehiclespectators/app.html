@@ -1,0 +1,30 @@
+<div style="height: 100%; width: 100%; overflow: hidden; position: relative; color: white" layout="column" class="spectators-app" ng-if="totalPlayers > 1">
+	<link type="text/css" rel="stylesheet" href="/ui/modules/apps/vehiclespectators/app.css" />
+
+	<div class="app-content" ng-if="currentVehicle.inVehicle">
+		<div class="driver-info">
+			<span class="driver-name">{{currentVehicle.vehicleOwner || 'Unknown'}}</span>
+		</div>
+		
+		<div class="spectators-info" ng-if="spectators.length > 0">
+			<div class="spectators-list">
+				<span class="spectator-name" ng-repeat="spectator in spectators | limitTo:maxVisibleSpectators">{{spectator.name}}</span>
+				<span class="spectator-more" ng-if="spectators.length > maxVisibleSpectators">+{{spectators.length - maxVisibleSpectators}} more</span>
+			</div>
+			<div class="spectators-count">
+				<span class="count-number">{{spectators.length}}</span>
+				<span class="count-label">{{spectators.length === 1 ? 'spectator' : 'spectators'}}</span>
+			</div>
+		</div>
+		
+		<div class="no-spectators" ng-if="spectators.length === 0">
+			<span>No spectators</span>
+		</div>
+	</div>
+
+	<div class="app-content" ng-if="!currentVehicle.inVehicle">
+		<div class="not-in-vehicle">
+			<span>Not in vehicle</span>
+		</div>
+	</div>
+</div> 
